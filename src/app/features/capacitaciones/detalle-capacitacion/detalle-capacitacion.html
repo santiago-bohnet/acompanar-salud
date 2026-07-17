@@ -1,67 +1,127 @@
-﻿@if (capacitacion) {
+@if (capacitacion) {
   <section class="detalle-page">
-    <a class="back-link" routerLink="/capacitaciones">Volver a capacitaciones</a>
-
-    <header class="detalle-hero">
-      <p class="eyebrow">Datos temporales</p>
+    <header class="detalle-hero" [style.--hero-img]="heroImage" [style.--hero-pos]="heroPosition">
       <h1>{{ capacitacion.nombre }}</h1>
-      <p>{{ capacitacion.descripcion }}</p>
     </header>
 
     <div class="detalle-layout">
       <main class="detalle-main">
-        <section class="info-panel">
-          <h2>Informacion de la capacitacion</h2>
-          <div class="facts">
-            <span><strong>Duracion</strong>{{ capacitacion.duracion }}</span>
-            <span><strong>Modalidad</strong>{{ capacitacion.modalidad }}</span>
-            <span><strong>Certificado</strong>{{ capacitacion.certificado }}</span>
-            <span><strong>Carga horaria</strong>A confirmar</span>
-            <span><strong>Precio</strong>A confirmar</span>
-            <span><strong>Fecha de inicio</strong>A confirmar</span>
-            <span><strong>Dias y horarios</strong>A confirmar</span>
-            <span><strong>Lugar</strong>A confirmar</span>
+        <section class="course-overview" aria-labelledby="sobre-curso-title">
+          <div class="course-overview__heading">
+            <span class="course-overview__icon" aria-hidden="true">
+              <fa-icon [icon]="infoIcon"></fa-icon>
+            </span>
+            <h2 id="sobre-curso-title">Sobre el curso</h2>
           </div>
-        </section>
 
-        <section class="info-panel">
-          <h2>Salida laboral</h2>
-          <ul>
-            @for (salida of capacitacion.salidaLaboral; track salida) {
-              <li>{{ salida }}</li>
-            }
-          </ul>
-        </section>
+          <p class="course-overview__description">{{ capacitacion.descripcion }}</p>
 
-        <section class="info-panel">
-          <h2>Plan de estudios</h2>
-          <p>{{ capacitacion.plan }}</p>
-          <p class="temporary-note">Contenido temporal para reemplazar por el programa definitivo.</p>
+          <div class="facts" aria-label="Datos de la capacitación">
+            <span><fa-icon class="fact-icon" [icon]="calendarIcon" aria-hidden="true"></fa-icon><span><strong>Duración</strong>{{ capacitacion.duracion }}</span></span>
+            <span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s6-5.2 6-11a6 6 0 0 0-12 0c0 5.8 6 11 6 11Z"></path><circle cx="12" cy="10" r="2"></circle></svg><span><strong>Modalidad</strong>{{ capacitacion.modalidad }}</span></span>
+            <span><fa-icon class="fact-icon" [icon]="awardIcon" aria-hidden="true"></fa-icon><span><strong>Certificado</strong></span></span>
+            <span><fa-icon class="fact-icon" [icon]="clockIcon" aria-hidden="true"></fa-icon><span><strong>Carga horaria</strong>{{ capacitacion.cargaHoraria }}</span></span>
+            <span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v18M17 7.5c-.8-.9-2-1.5-3.6-1.5-2 0-3.4 1-3.4 2.5 0 4 7 1.7 7 5.7 0 1.6-1.4 2.8-3.7 2.8-1.7 0-3.1-.6-4.1-1.7"></path></svg><span><strong>Precio</strong>A confirmar</span></span>
+            <span><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="5" width="16" height="15" rx="2"></rect><path d="M8 3v4M16 3v4M4 10h16"></path></svg><span><strong>Incorporación inmediata</strong><small>Una vez realizada la inscripción, comenzás en la próxima clase correspondiente.</small></span></span>
+            <span><fa-icon class="fact-icon" [icon]="clockIcon" aria-hidden="true"></fa-icon><span><strong>Días y horarios</strong>A confirmar</span></span>
+            <span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s6-5.2 6-11a6 6 0 0 0-12 0c0 5.8 6 11 6 11Z"></path><circle cx="12" cy="10" r="2"></circle></svg><span><strong>Lugar</strong>A confirmar</span></span>
+          </div>
+
+          <div class="course-overview__block">
+            <h3>Salida laboral</h3>
+            <ul>
+              @for (salida of capacitacion.salidaLaboral; track salida) {
+                <li><fa-icon class="work-check" [icon]="checkIcon" aria-hidden="true"></fa-icon><span>{{ salida }}</span></li>
+              }
+            </ul>
+          </div>
+
+          <div class="course-overview__block study-plan">
+            <div class="study-plan__head">
+              <fa-icon [icon]="bookIcon" aria-hidden="true"></fa-icon>
+              <h3>Plan de estudios</h3>
+            </div>
+
+            <div class="accordion">
+              @for (module of modules; track module) {
+                <div class="accordion__item">
+                  <button type="button" class="accordion__button" [attr.aria-expanded]="openPanel === 'module-' + module" (click)="togglePanel('module-' + module)">
+                    <span>MÓDULO {{ module }}</span>
+                    <fa-icon [icon]="openPanel === 'module-' + module ? upIcon : downIcon" aria-hidden="true"></fa-icon>
+                  </button>
+                  @if (openPanel === 'module-' + module) {
+                    <div class="accordion__body">
+                      <p>Contenido del módulo pendiente de confirmar.</p>
+                    </div>
+                  }
+                </div>
+              }
+
+              <div class="accordion__item">
+                <button type="button" class="accordion__button" [attr.aria-expanded]="openPanel === 'general'" (click)="togglePanel('general')">
+                  <span>Info general del curso</span>
+                  <fa-icon [icon]="openPanel === 'general' ? upIcon : downIcon" aria-hidden="true"></fa-icon>
+                </button>
+                @if (openPanel === 'general') {
+                  <div class="accordion__body">
+                    <p>Haz <a href="#" (click)="$event.preventDefault()">CLICK AQUÍ</a> para ver la carpeta del curso {{ carpetaCurso }}.</p>
+                  </div>
+                }
+              </div>
+            </div>
+          </div>
         </section>
       </main>
 
-      <aside class="inscripcion" aria-label="Inscripcion">
-        <h2>Inscripcion</h2>
-        <p>Dejanos tus datos y te contactamos para confirmar informacion, requisitos y disponibilidad.</p>
-        <a class="whatsapp-button" href="#inscripcion-form">Consultar por WhatsApp</a>
+      <aside class="inscripcion" aria-label="Inscripción a capacitación">
+        <h2>Inscripciones 100%. Consultá tus dudas.</h2>
 
-        <form id="inscripcion-form" class="form-card">
-          <label>Nombre y apellido<input type="text" name="nombre" /></label>
-          <label>DNI<input type="text" name="dni" /></label>
-          <label>Telefono<input type="tel" name="telefono" /></label>
-          <label>Correo<input type="email" name="correo" /></label>
-          <label>Capacitacion elegida<input type="text" name="capacitacion" [value]="capacitacion.nombre" readonly /></label>
-          <label>Mensaje<textarea name="mensaje" rows="4"></textarea></label>
-          <button type="button">Enviar consulta</button>
+        <form id="inscripcion-form" class="adulto-form" novalidate (submit)="handleInscripcionSubmit($event)">
+          <label>
+            <span>Nombre*</span>
+            <input type="text" name="nombre" placeholder="Nombre" required />
+          </label>
+
+          <label>
+            <span>Email*</span>
+            <input type="email" name="email" placeholder="Email" required />
+          </label>
+
+          <label>
+            <span>Teléfono*</span>
+            <input type="tel" name="telefono" placeholder="Teléfono" required />
+          </label>
+
+          <label>
+            <span>Mensaje*</span>
+            <textarea name="mensaje" placeholder="Mensaje" rows="6" required></textarea>
+          </label>
+
+          <div class="captcha-placeholder" aria-label="Captcha pendiente de integración">
+            Captcha pendiente de integración
+          </div>
+
+          <button class="adulto-form__submit" type="submit">ENVIAR</button>
+
+          @if (formMessage) {
+            <p class="form-message" role="status">{{ formMessage }}</p>
+          }
         </form>
+
+        <a class="whatsapp-wide" href="https://wa.me/5490000000000" target="_blank" rel="noopener noreferrer">
+          <span>CONTACTANOS POR WHATSAPP</span>
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M12.04 3.5a8.44 8.44 0 0 0-7.2 12.84L4 20.5l4.25-1.12a8.42 8.42 0 0 0 3.79.91h.01a8.4 8.4 0 1 0-.01-16.79Zm4.94 12.04c-.21.59-1.22 1.13-1.7 1.2-.44.07-1 .1-1.61-.1-.37-.12-.85-.27-1.46-.53-2.57-1.11-4.24-3.7-4.37-3.87-.13-.18-1.04-1.39-1.04-2.65 0-1.27.66-1.89.9-2.15.23-.26.51-.32.68-.32h.49c.16 0 .37-.06.58.44.21.52.72 1.79.78 1.92.06.13.1.29.02.47-.08.18-.12.29-.25.44-.13.15-.27.34-.39.45-.13.13-.26.27-.11.53.15.26.67 1.11 1.44 1.8.99.88 1.82 1.15 2.08 1.28.26.13.41.11.56-.07.15-.18.65-.76.82-1.02.17-.26.35-.21.58-.13.24.08 1.53.72 1.79.85.26.13.43.2.5.31.06.11.06.64-.15 1.23Z" />
+          </svg>
+        </a>
       </aside>
     </div>
   </section>
 } @else {
   <section class="detalle-page">
     <div class="not-found">
-      <h1>Capacitacion no encontrada</h1>
-      <p>La capacitacion solicitada no esta disponible.</p>
+      <h1>Capacitación no encontrada</h1>
+      <p>La capacitación solicitada no está disponible.</p>
       <a routerLink="/capacitaciones">Volver a capacitaciones</a>
     </div>
   </section>
