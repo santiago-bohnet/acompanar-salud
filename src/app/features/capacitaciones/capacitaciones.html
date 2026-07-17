@@ -1,0 +1,43 @@
+﻿<section class="capacitaciones-page">
+  <header class="capacitaciones-hero">
+    <p class="eyebrow">Formacion profesional</p>
+    <h1>Capacitaciones</h1>
+    <p>Propuestas de formacion pensadas para acompanar el crecimiento profesional y responder a necesidades concretas de la comunidad.</p>
+  </header>
+
+  <div class="capacitaciones-grid">
+    @for (capacitacion of capacitaciones; track capacitacion.slug) {
+      <article class="capacitacion-card">
+        <div class="capacitacion-card__image">
+          <span>Imagen reemplazable</span>
+        </div>
+
+        <div class="capacitacion-card__body">
+          <h2>{{ capacitacion.titulo }}</h2>
+
+          <div class="capacitacion-card__tags" aria-label="Datos principales">
+            <span>{{ capacitacion.duracion }}</span>
+            <span>{{ capacitacion.modalidad }}</span>
+            <span>Certificado: {{ capacitacion.certificado }}</span>
+            <span>{{ capacitacion.cargaHoraria }}</span>
+          </div>
+
+          <p>{{ capacitacion.descripcion }}</p>
+
+          <div class="capacitacion-card__work">
+            <h3>Salida laboral</h3>
+            <ul>
+              @for (salida of capacitacion.salidaLaboral; track salida) {
+                <li>{{ salida }}</li>
+              }
+            </ul>
+          </div>
+
+          <p class="capacitacion-card__plan">{{ capacitacion.plan }}</p>
+
+          <a class="capacitacion-card__button" [routerLink]="['/capacitaciones', capacitacion.slug]">Mas informacion</a>
+        </div>
+      </article>
+    }
+  </div>
+</section>

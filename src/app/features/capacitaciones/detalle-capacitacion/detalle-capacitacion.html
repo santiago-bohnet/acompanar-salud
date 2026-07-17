@@ -1,0 +1,68 @@
+﻿@if (capacitacion) {
+  <section class="detalle-page">
+    <a class="back-link" routerLink="/capacitaciones">Volver a capacitaciones</a>
+
+    <header class="detalle-hero">
+      <p class="eyebrow">Datos temporales</p>
+      <h1>{{ capacitacion.nombre }}</h1>
+      <p>{{ capacitacion.descripcion }}</p>
+    </header>
+
+    <div class="detalle-layout">
+      <main class="detalle-main">
+        <section class="info-panel">
+          <h2>Informacion de la capacitacion</h2>
+          <div class="facts">
+            <span><strong>Duracion</strong>{{ capacitacion.duracion }}</span>
+            <span><strong>Modalidad</strong>{{ capacitacion.modalidad }}</span>
+            <span><strong>Certificado</strong>{{ capacitacion.certificado }}</span>
+            <span><strong>Carga horaria</strong>A confirmar</span>
+            <span><strong>Precio</strong>A confirmar</span>
+            <span><strong>Fecha de inicio</strong>A confirmar</span>
+            <span><strong>Dias y horarios</strong>A confirmar</span>
+            <span><strong>Lugar</strong>A confirmar</span>
+          </div>
+        </section>
+
+        <section class="info-panel">
+          <h2>Salida laboral</h2>
+          <ul>
+            @for (salida of capacitacion.salidaLaboral; track salida) {
+              <li>{{ salida }}</li>
+            }
+          </ul>
+        </section>
+
+        <section class="info-panel">
+          <h2>Plan de estudios</h2>
+          <p>{{ capacitacion.plan }}</p>
+          <p class="temporary-note">Contenido temporal para reemplazar por el programa definitivo.</p>
+        </section>
+      </main>
+
+      <aside class="inscripcion" aria-label="Inscripcion">
+        <h2>Inscripcion</h2>
+        <p>Dejanos tus datos y te contactamos para confirmar informacion, requisitos y disponibilidad.</p>
+        <a class="whatsapp-button" href="#inscripcion-form">Consultar por WhatsApp</a>
+
+        <form id="inscripcion-form" class="form-card">
+          <label>Nombre y apellido<input type="text" name="nombre" /></label>
+          <label>DNI<input type="text" name="dni" /></label>
+          <label>Telefono<input type="tel" name="telefono" /></label>
+          <label>Correo<input type="email" name="correo" /></label>
+          <label>Capacitacion elegida<input type="text" name="capacitacion" [value]="capacitacion.nombre" readonly /></label>
+          <label>Mensaje<textarea name="mensaje" rows="4"></textarea></label>
+          <button type="button">Enviar consulta</button>
+        </form>
+      </aside>
+    </div>
+  </section>
+} @else {
+  <section class="detalle-page">
+    <div class="not-found">
+      <h1>Capacitacion no encontrada</h1>
+      <p>La capacitacion solicitada no esta disponible.</p>
+      <a routerLink="/capacitaciones">Volver a capacitaciones</a>
+    </div>
+  </section>
+}
