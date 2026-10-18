@@ -1,0 +1,68 @@
+<main class="news-page">
+  <section class="news-hero" aria-labelledby="news-title">
+    <div class="news-hero__copy">
+      <p class="eyebrow">Actualidad</p>
+      <h1 id="news-title">Novedades</h1>
+      <p>Información, actividades y anuncios de Acompañar Salud.</p>
+    </div>
+  </section>
+
+  <section class="section featured-news" aria-labelledby="featured-title">
+    <article class="featured-card">
+      <div class="featured-card__visual" aria-hidden="true"></div>
+      <div class="featured-card__copy">
+        <p class="label">{{ featured.category }} · {{ featured.date }}</p>
+        <h2 id="featured-title">{{ featured.title }}</h2>
+        <p>{{ featured.description }}</p>
+        <button type="button" (click)="openNews(featured)">Leer más</button>
+      </div>
+    </article>
+  </section>
+
+  <section class="section latest-news" aria-labelledby="latest-title">
+    <div class="section__head">
+      <p class="eyebrow">Publicaciones</p>
+      <h2 id="latest-title">Últimas novedades</h2>
+    </div>
+
+    <div class="news-filters" aria-label="Filtrar novedades">
+      @for (filter of filters; track filter) {
+        <button type="button" [class.is-active]="activeFilter === filter" [attr.aria-pressed]="activeFilter === filter" (click)="setFilter(filter)">{{ filter }}</button>
+      }
+    </div>
+
+    <div class="news-grid">
+      @for (item of filteredNews; track item.title) {
+        <article class="news-card">
+          <div class="news-card__visual" aria-hidden="true"></div>
+          <p class="label">{{ item.category }} · {{ item.date }}</p>
+          <h3>{{ item.title }}</h3>
+          <p>{{ item.description }}</p>
+          <button type="button" (click)="openNews(item)">Leer más</button>
+        </article>
+      }
+    </div>
+
+    @if (selectedNews) {
+      <aside class="news-panel" role="dialog" aria-modal="false" aria-labelledby="panel-title">
+        <button class="news-panel__close" type="button" aria-label="Cerrar novedad" (click)="closeNews()">Cerrar</button>
+        <p class="label">{{ selectedNews.category }} · {{ selectedNews.date }}</p>
+        <h2 id="panel-title">{{ selectedNews.title }}</h2>
+        <p>{{ selectedNews.description }}</p>
+        <p>{{ selectedNews.body }}</p>
+      </aside>
+    }
+  </section>
+
+  <section class="news-cta" aria-labelledby="news-cta-title">
+    <div>
+      <h2 id="news-cta-title">¿Querés recibir más información?</h2>
+      <p>Consultá a nuestro WhatsApp o visitá nuestras redes sociales.</p>
+    </div>
+    <div class="news-cta__actions" aria-label="Canales de contacto">
+      <a class="button cta-button cta-button--whatsapp" [href]="whatsappUrl" target="_blank" rel="noopener noreferrer">WhatsApp</a>
+      <a class="social-link social-link--instagram" [href]="instagramUrl" target="_blank" rel="noopener noreferrer">Instagram</a>
+      <a class="social-link social-link--facebook" [href]="facebookUrl" target="_blank" rel="noopener noreferrer">Facebook</a>
+    </div>
+  </section>
+</main>

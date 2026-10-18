@@ -1,7 +1,7 @@
 <nav class="navbar" aria-label="Navegación principal">
   <a class="navbar__logo" routerLink="/" aria-label="Ir al inicio" (click)="closeMenu()">
-    <span class="navbar__logo-mark" aria-hidden="true">+</span>
-    <span>Acompañar Salud</span>
+    <img class="navbar__logo-image" src="assets/isotipo-acompanar-salud.png" alt="Acompañar Salud" />
+    <span class="navbar__brand-text">Acompañar Salud</span>
   </a>
 
   <input #menuToggle class="navbar__toggle" type="checkbox" id="navbar-menu-toggle" aria-label="Abrir menú" />
@@ -12,11 +12,9 @@
   </label>
 
   <div class="navbar__links">
-    <a routerLink="/capacitaciones" (click)="closeMenu()">Capacitaciones</a>
-    <a routerLink="/" (click)="closeMenu()">Servicios</a>
-    <a routerLink="/" (click)="closeMenu()">Profesionales</a>
-    <a routerLink="/" (click)="closeMenu()">Novedades</a>
-    <a routerLink="/" (click)="closeMenu()">Ubicación</a>
+    <a routerLink="/capacitaciones" routerLinkActive="is-active" (click)="closeMenu()">Capacitaciones</a>
+    <a routerLink="/servicios" routerLinkActive="is-active" (click)="closeMenu()">Servicios</a>
+    <a routerLink="/novedades" routerLinkActive="is-active" (click)="closeMenu()">Novedades</a>
+    <a routerLink="/ubicacion" routerLinkActive="is-active" (click)="closeMenu()">Ubicación</a>
   </div>
 </nav>
-

@@ -1,0 +1,76 @@
+<main class="location-page">
+  <section class="location-hero" aria-labelledby="location-title">
+    <div class="location-hero__content">
+      <p class="eyebrow">Ubicación</p>
+      <h1 id="location-title">Dónde encontrarnos</h1>
+      <p>Conocé nuestra ubicación, horarios de atención y medios de contacto.</p>
+    </div>
+  </section>
+
+  <section class="section location-info" aria-labelledby="location-info-title">
+    <div class="location-info__card">
+      <div class="section__head">
+        <p class="eyebrow">Información principal</p>
+        <h2 id="location-info-title">Atención presencial</h2>
+      </div>
+
+      <div class="location-details-column">
+        <div class="location-details-panel">
+          <dl class="location-details">
+            <div>
+              <dt>Dirección</dt>
+              <dd>{{ displayAddress }}</dd>
+            </div>
+            <div>
+              <dt>Horario</dt>
+              <dd>{{ schedule }}</dd>
+            </div>
+            <div>
+              <dt>Teléfono</dt>
+              <dd>{{ phoneDisplay }}</dd>
+            </div>
+          </dl>
+        </div>
+      </div>
+
+      <div class="button-group" aria-label="Acciones de ubicación">
+        <a class="button button--primary" [href]="mapsUrl" target="_blank" rel="noopener noreferrer" aria-label="Cómo llegar a Acompañar Salud en Google Maps">Cómo llegar</a>
+        <a class="button button--secondary" [href]="whatsappUrl" target="_blank" rel="noopener noreferrer" aria-label="Abrir WhatsApp de Acompañar Salud">WhatsApp</a>
+        <a class="button button--outline" [href]="phoneLink" aria-label="Llamar a Acompañar Salud">Llamar</a>
+      </div>
+    </div>
+  </section>
+  <section class="section map-section" aria-labelledby="map-title">
+    <div class="section__head section__head--split">
+      <div>
+        <p class="eyebrow">Mapa</p>
+        <h2 id="map-title">General Roca 1175, Cipolletti</h2>
+      </div>
+      <div class="map-section__actions">
+        <a class="button button--primary" href="https://www.google.com/maps/search/?api=1&query=General+Roca+1175+Cipolletti+Rio+Negro" target="_blank" rel="noopener noreferrer" aria-label="Abrir ubicación de Acompañar Salud en Google Maps">Abrir en Google Maps</a>
+      </div>
+    </div>
+
+    <iframe
+      class="map-frame"
+      src="https://www.google.com/maps?q=General+Roca+1175,+Cipolletti,+Rio+Negro&output=embed"
+      title="Mapa de Acompañar Salud en General Roca 1175, Cipolletti"
+      loading="lazy"
+      referrerpolicy="no-referrer-when-downgrade"
+      aria-label="Mapa de Acompañar Salud en General Roca 1175, Cipolletti"
+    ></iframe>
+  </section>
+
+  <section class="quick-contact" aria-labelledby="quick-contact-title">
+    <div>
+      <p class="eyebrow">Contacto rápido</p>
+      <h2 id="quick-contact-title">¿Necesitás ayuda para llegar?</h2>
+      <p>Comunicate con nosotros y te orientamos.</p>
+    </div>
+    <div class="button-group" aria-label="Contacto rápido">
+      <a class="button button--primary" [href]="whatsappUrl" target="_blank" rel="noopener noreferrer" aria-label="Abrir WhatsApp de Acompañar Salud">WhatsApp</a>
+      <a class="button button--secondary" [href]="phoneLink" aria-label="Llamar a Acompañar Salud">Llamar</a>
+      <a class="button button--outline button--light" [href]="mapsUrl" target="_blank" rel="noopener noreferrer" aria-label="Abrir Google Maps">Google Maps</a>
+    </div>
+  </section>
+</main>

@@ -1,4 +1,4 @@
-﻿:host {
+:host {
     display: block;
     color: #153847;
     background: #FFFFFF;
@@ -101,18 +101,17 @@ section {
 
 .button--secondary {
     color: #FFFFFF;
-    border: 1px solid #6ED6A0;
-    transition:
-        background .18s ease,
-        border-color .18s ease,
-        transform .18s ease;
+    border: 1px solid #ADFF61;
+    transition: background .18s ease, border-color .18s ease, transform .18s ease;
 }
 
 .button--secondary:hover {
-    background: rgba(110, 214, 160, .12);
-    border-color: #8BE5B6;
+    background: rgba(173, 255, 97, 0.14);
+    border-color: #ADFF61;
     transform: translateY(-2px);
-}.section {
+}
+
+.section {
     padding: clamp(66px, 9vw, 112px) clamp(20px, 6vw, 92px)
 }
 
@@ -153,9 +152,8 @@ p {
 }
 
 .tile,
-.course-card,
+.training-feature,
 .service-card,
-.profiles article,
 .news article {
     border: 1px solid rgba(47, 143, 196, .13);
     border-radius: 26px;
@@ -185,8 +183,8 @@ p {
 }
 
 .tile p,
+.training-feature p,
 .service-card p,
-.profiles p,
 .news p {
     margin: 0;
     color: #153847
@@ -201,6 +199,13 @@ p {
     margin-bottom: 34px
 }
 
+.section__head h2,
+.intro__copy h2 {
+    border-bottom: 2px solid var(--green);
+    display: inline-block;
+    padding-bottom: 8px
+}
+
 .approach__items {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
@@ -210,7 +215,7 @@ p {
 .approach__items span {
     padding: 16px 18px;
     border-left: 3px solid var(--green);
-    border-radius: 14px;
+    border-radius: 12px;
     background: rgba(255, 255, 255, .62);
     color: #164E73;
     font-weight: 800
@@ -250,7 +255,6 @@ p {
 }
 
 .training,
-.professionals,
 .location {
     background: #F3FBFC
 }
@@ -263,135 +267,146 @@ p {
     align-items: end
 }
 
-.training__grid {
-    display: grid;
-    grid-template-columns: repeat(5, minmax(0, 1fr));
-    gap: 18px
-}
-
-.course-card {
-    min-height: 300px;
-    display: flex;
-    flex-direction: column;
-    padding: 26px;
-    border-radius: 24px;
-    box-shadow: 0 12px 30px rgba(22, 78, 115, .08);
-    transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease
-}
-
-.course-card:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 18px 38px rgba(22, 78, 115, .13);
-    border-color: rgba(103, 203, 227, .7)
-}
-
-.course-card__icon {
-    width: 46px;
-    height: 46px;
-    display: grid;
-    place-items: center;
-    margin-bottom: 18px;
-    border-radius: 16px;
-    background: linear-gradient(135deg, #39BDB2, #67CBE3);
-    color: #164E73;
-    font-weight: 900
-}
-
-.course-card h3 {
-    flex: 1
-}
-
-.course-card__duration {
-    margin: 0 0 18px;
-    color: #153847;
-    font-weight: 800
-}
-
-.course-card a {
-    color: #39BDB2;
-    font-weight: 900;
-    text-decoration: none
-}
-
-.services__layout {
+.training__featured {
     display: grid;
     grid-template-columns: 1.1fr .9fr;
     grid-template-areas: "main side1" "main side2";
     gap: 18px
 }
 
-.service-card {
-    padding: 28px
+.training-feature {
+    display: flex;
+    flex-direction: column;
+    padding: 22px;
+    box-shadow: 0 10px 24px rgba(22, 78, 115, .07);
+    transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease
 }
 
-.service-card--main {
+.training-feature:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 18px 38px rgba(22, 78, 115, .13);
+    border-color: rgba(103, 203, 227, .7)
+}
+
+.training-feature--main {
     grid-area: main;
-    min-height: 330px;
-    background: linear-gradient(155deg, #164E73, #2F8FC4);
+    justify-content: flex-end;
+    min-height: 270px;
+    position: relative;
+    overflow: hidden;
+    color: #FFFFFF;
+    background-image: url('/Cuidadosadultomayor.png');
+    background-size: cover;
+    background-position: center 38%;
+    background-repeat: no-repeat
+}
+
+.training-feature--main::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    background: linear-gradient(155deg, rgba(22, 78, 115, .88), rgba(22, 78, 115, .52))
+}
+
+.training-feature--main > * {
+    position: relative;
+    z-index: 1
+}
+
+.training-feature--main h3,
+.training-feature--main p {
     color: #FFFFFF
 }
 
-.service-card--main h3,
-.service-card--main p {
-    color: #FFFFFF
+.training-feature a {
+    width: max-content;
+    margin-top: auto;
+    padding-top: 12px;
+    color: #39BDB2;
+    font-weight: 900;
+    text-decoration: none
 }
 
-.service-card span {
-    width: 44px;
-    height: 44px;
-    display: grid;
-    place-items: center;
-    border-radius: 14px;
-    background: linear-gradient(135deg, #39BDB2, #67CBE3);
-    color: #164E73;
-    font-weight: 900
+.training-feature--main a {
+    color: #ADFF61
 }
 
-.services__layout article:nth-child(2) {
+.training__featured article:nth-child(2) {
     grid-area: side1
 }
 
-.services__layout article:nth-child(3) {
+.training__featured article:nth-child(3) {
     grid-area: side2
 }
 
+.training__actions,
 .services__actions {
     display: flex;
     justify-content: flex-end;
     margin-top: 24px
 }
 
-.services__button {
-    width: max-content
-}
-
-.profiles {
-    display: flex;
-    gap: 18px;
+.services__grid {
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: 14px;
     align-items: stretch
 }
 
-.profiles article {
-    flex: 1;
+.service-card {
+    min-height: 190px;
     height: 100%;
     display: flex;
     flex-direction: column;
-    padding: 16px;
-    transition: .18s ease
+    padding: 22px;
+    border-radius: 24px;
+    box-shadow: 0 12px 30px rgba(22, 78, 115, .08);
+    transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease
 }
 
-.profiles article:hover {
-    transform: translateY(-4px)
+.service-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 18px 38px rgba(22, 78, 115, .13);
+    border-color: rgba(103, 203, 227, .7)
 }
 
-.profiles div {
-    height: 210px;
-    display: grid;
-    place-items: center;
-    border-radius: 20px;
-    background: linear-gradient(135deg, #39BDB2, #67CBE3);
-    color: #164E73;
-    font-weight: 900
+.service-card h3 {
+    flex: 1
+}
+
+.service-card__link {
+    width: max-content;
+    margin-top: auto;
+    padding-top: 12px;
+    color: #39BDB2;
+    font-weight: 900;
+    text-decoration: none
+}
+
+.service-card__link:hover {
+    color: #164E73
+}
+
+.training__button,
+.services__button {
+    width: max-content;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px
+}
+
+.button__arrow {
+    width: 23px;
+    height: 16px;
+    display: block;
+    flex: 0 0 auto;
+    transition: transform .18s ease
+}
+
+.training__button:hover .button__arrow,
+.services__button:hover .button__arrow {
+    transform: translateX(3px)
 }
 
 .institutional-strip {
@@ -443,7 +458,7 @@ p {
     display: grid;
     place-items: center;
     align-content: center;
-    padding: 26px;
+    padding: 22px;
     text-align: center;
     border: 1px solid rgba(47, 143, 196, .16);
     border-radius: 28px;
@@ -456,29 +471,34 @@ p {
     font-weight: 900
 }
 
+@media(max-width:1180px) {
+    .services__grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr))
+    }
+}
+
 @media(max-width:980px) {
 
-    .hero,
     .intro,
     .audience,
     .section__head--split,
-    .services__layout,
+    .training__featured,
     .location__content {
         grid-template-columns: 1fr
     }
 
-    .training__grid {
-        grid-template-columns: repeat(2, minmax(0, 1fr))
-    }
-
-    .services__layout {
+    .training__featured {
         grid-template-areas: none
     }
 
-    .service-card--main,
-    .services__layout article:nth-child(2),
-    .services__layout article:nth-child(3) {
+    .training-feature--main,
+    .training__featured article:nth-child(2),
+    .training__featured article:nth-child(3) {
         grid-area: auto
+    }
+
+    .services__grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr))
     }
 
     .approach__items,
@@ -487,9 +507,6 @@ p {
         grid-template-columns: 1fr
     }
 
-    .profiles {
-        flex-direction: column
-    }
 }
 
 @media(max-width:640px) {
@@ -506,6 +523,7 @@ p {
         width: 100%
     }
 
+    .training__actions,
     .services__actions {
         justify-content: center
     }
@@ -518,19 +536,21 @@ p {
         padding: 58px 20px
     }
 
-    .intro__mosaic {
+    .intro__mosaic,
+    .services__grid {
         grid-template-columns: 1fr
     }
 
-    .tile--large {
+    .tile--large,
+    .training-feature--main {
         min-height: auto
     }
 
-    .training__grid {
-        grid-template-columns: 1fr
+    .training-feature--main {
+        background-position: center 34%
     }
 
-    .course-card {
+    .service-card {
         min-height: auto
     }
 
@@ -538,33 +558,3 @@ p {
         padding: 14px
     }
 }
-.section__head h2,
-.intro__copy h2 {
-    border-bottom: 2px solid var(--green);
-    display: inline-block;
-    padding-bottom: 8px
-}
-
-.service-card span,
-.profiles div {
-    box-shadow: none
-}
-
-
-.button--secondary {
-    color: #FFFFFF;
-    border: 1px solid #ADFF61;
-}
-
-.button--secondary:hover {
-    background: rgba(173, 255, 97, 0.14);
-    border-color: #ADFF61;
-}
-
-
-
-
-
-
-
-
