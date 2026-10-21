@@ -26,6 +26,9 @@ jobs:
       - run: npm ci
       - name: Compilar Angular para GitHub Pages
         run: npm run build -- --base-href /acompanar-salud/
+      - name: Ajustar rutas absolutas de imágenes en CSS
+        run: |
+          find dist/acompanar-salud/browser -name '*.css' -type f -exec sed -i 's|url(/fondohero.png)|url(/acompanar-salud/fondohero.png)|g; s|url(/Cuidadosadultomayor.png)|url(/acompanar-salud/Cuidadosadultomayor.png)|g' {} +
       - name: Preparar directorio publicado
         run: |
           test -f dist/acompanar-salud/browser/index.html
