@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { CATEGORIAS_DOMICILIARIAS } from './catalogo-domiciliario';
 
 @Component({
   selector: 'app-servicios',
@@ -7,6 +8,7 @@ import { Component } from '@angular/core';
   styleUrl: './servicios.css',
 })
 export class Servicios {
+  readonly categoriasDomiciliarias = CATEGORIAS_DOMICILIARIAS;
   readonly whatsappUrl = 'https://wa.me/5492996110442';
 
   scrollToServices(event: Event): void {
