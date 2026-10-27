@@ -7,7 +7,7 @@
       <div class="services-hero__actions" aria-label="Acciones principales">
         <a class="button button--primary" [href]="whatsappUrl" target="_blank" rel="noopener noreferrer">Consultar por WhatsApp</a>
         <a class="button button--secondary" href="#servicios-listado" (click)="scrollToServices($event)">Ver servicios</a>
-        <a class="button button--secondary" href="solicitar-atencion">Solicitar atención</a>
+        <a class="button button--secondary" routerLink="/solicitar-atencion">Solicitar atención</a>
       </div>
     </div>
   </section>
@@ -116,6 +116,6 @@
       <h2 id="services-cta-title">¿Necesitás orientación para elegir un servicio?</h2>
       <p>Contanos tu situación y te ayudamos a encontrar la atención más adecuada.</p>
     </div>
-    <a class="button button--primary cta-button" href="solicitar-atencion" target="_blank" rel="noopener noreferrer">Solicitar orientación <svg class="button__arrow" aria-hidden="true" viewBox="0 0 32 18" focusable="false"><path d="M2 9H28M21 2L28 9L21 16" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" /></svg></a>
+    <a class="button button--primary cta-button" routerLink="/solicitar-atencion" target="_blank" rel="noopener noreferrer">Solicitar orientación <svg class="button__arrow" aria-hidden="true" viewBox="0 0 32 18" focusable="false"><path d="M2 9H28M21 2L28 9L21 16" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" /></svg></a>
   </section>
 </main>
