@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
+import { RouterLink } from '@angular/router';
 import { CATEGORIAS_DOMICILIARIAS } from './catalogo-domiciliario';
 
 @Component({
   selector: 'app-servicios',
-  imports: [],
+  imports: [RouterLink],
   templateUrl: './servicios.html',
   styleUrl: './servicios.css',
 })
