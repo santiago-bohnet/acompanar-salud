@@ -68,18 +68,27 @@
       <h2 id="all-services-title">Todos los servicios</h2>
     </div>
     <div class="service-group">
-      <h3>Atención domiciliaria</h3>
-      <div class="all-services__grid">
-        <article><p class="label">Domicilio</p><h4>Asistencia domiciliaria</h4><p>Orientación y coordinación de cuidados en el hogar.</p><a [href]="whatsappUrl" target="_blank" rel="noopener noreferrer">Consultar</a></article>
-        <article><p class="label">Domicilio</p><h4>Cuidados de apoyo continuo</h4><p>Acompañamiento para personas que requieren apoyo continuo.</p><a [href]="whatsappUrl" target="_blank" rel="noopener noreferrer">Consultar</a></article>
-        <article><p class="label">Domicilio</p><h4>Enfermería domiciliaria</h4><p>Cuidados de enfermería según necesidad del paciente.</p><a [href]="whatsappUrl" target="_blank" rel="noopener noreferrer">Consultar</a></article>
-        <article><p class="label">Domicilio</p><h4>Acompañante terapéutico</h4><p>Acompañamiento cotidiano con orientación profesional.</p><a [href]="whatsappUrl" target="_blank" rel="noopener noreferrer">Consultar</a></article>
-        <article><p class="label">Domicilio</p><h4>Cuidados del adulto mayor domiciliario</h4><p>Asistencia orientada al bienestar de personas mayores.</p><a [href]="whatsappUrl" target="_blank" rel="noopener noreferrer">Consultar</a></article>
-        <article><p class="label">Domicilio</p><h4>Podología del pie diabético domiciliaria</h4><p>Atención podológica domiciliaria según evaluación profesional.</p><a [href]="whatsappUrl" target="_blank" rel="noopener noreferrer">Consultar</a></article>
-        <article><p class="label">Domicilio</p><h4>Masajes domiciliarios</h4><p>Atención corporal domiciliaria según necesidad consultada.</p><a [href]="whatsappUrl" target="_blank" rel="noopener noreferrer">Consultar</a></article>
-        <article><p class="label">Domicilio</p><h4>Drenaje linfático domiciliario</h4><p>Servicio domiciliario sujeto a evaluación y disponibilidad.</p><a [href]="whatsappUrl" target="_blank" rel="noopener noreferrer">Consultar</a></article>
-        <article><p class="label">Domicilio</p><h4>Rehabilitación de ACV domiciliaria</h4><p>Acompañamiento domiciliario orientado a procesos de rehabilitación.</p><a [href]="whatsappUrl" target="_blank" rel="noopener noreferrer">Consultar</a></article>
-      </div>
+      <h3>Atención domiciliaria de salud</h3>
+      <p class="service-group__intro">Un equipo interdisciplinario puede acompañar la recuperación y el cuidado en el hogar. Cada prestación está sujeta a evaluación, indicación profesional cuando corresponda y disponibilidad.</p>
+      @for (categoria of categoriasDomiciliarias; track categoria.titulo) {
+        <section class="home-care-category" [attr.aria-label]="categoria.titulo">
+          <div class="home-care-category__heading">
+            <h4>{{ categoria.titulo }}</h4>
+            <p>{{ categoria.descripcion }}</p>
+          </div>
+          <div class="all-services__grid">
+            @for (prestacion of categoria.prestaciones; track prestacion.nombre) {
+              <article>
+                <p class="label">Atención domiciliaria</p>
+                <h4>{{ prestacion.nombre }}</h4>
+                <p>{{ prestacion.descripcion }}</p>
+                <a [href]="whatsappUrl" target="_blank" rel="noopener noreferrer" [attr.aria-label]="'Consultar por ' + prestacion.nombre">Consultar</a>
+              </article>
+            }
+          </div>
+        </section>
+      }
+      <p class="service-group__note">La información es orientativa. La coordinación del servicio y las prácticas indicadas se confirman durante la consulta.</p>
     </div>
     <div class="service-group">
       <h3>Atención en consultorio</h3>
